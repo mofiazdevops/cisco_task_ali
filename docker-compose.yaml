@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile  # Replace with your frontend Dockerfile name if different
+    ports:
+      - "3000:3000"  # Expose the frontend on port 8000
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile  # Replace with your backend Dockerfile name if different
+    ports:
+      - "8000:8000"  # Expose the backend on port 5000 (or your desired port)
+    environment:
+      - ENV_VAR_NAME=value  # Add any necessary environment variables here
+    depends_on:
+      - frontend
+
